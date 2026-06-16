@@ -1,4 +1,4 @@
-#This section of code defines the colors for the rings
+#This section defines the colors for the rings
 Red = "\033[91m"
 Orange = "\033[38;2;255;165;0m"
 Yellow = "\033[93m"
@@ -7,50 +7,76 @@ Blue = "\033[94m"
 Reset = "\033[0m"
 
 
-#This section of code initializes the stack of rings and the player's hand
-stack = [Red, Orange, Yellow, Green, Blue]
+#This section defines the stack and hand lists
+stack = ["Blue", "Green", "Yellow", "Orange", "Red"]
 hand = []
 
 
-#This section of code displays the original state of the stack of rings
+#This section print the starting stack
 print("Starting Stack:")
-print(Blue + "█████████" + Reset)
-print(Green + "█████████" + Reset)
-print(Yellow + "█████████" + Reset)
-print(Orange + "█████████" + Reset)
 print(Red + "█████████" + Reset)
+print(Orange + "█████████" + Reset)
+print(Yellow + "█████████" + Reset)
+print(Green + "█████████" + Reset)
+print(Blue + "█████████" + Reset)
 
 
-#This allows the player to interact with the game by choosing to remove or add rings back to the stack
+#This section is the main loop of the program, where the user can choose to add or remove rings from the stack
 while True:
-    print("1 = Remove ring, 2 = Add ring back")
-    choice = input()
-   
+    print("")
+    print("1 = Remove a ring")
+    print("2 = Add a ring")
+    choice = input("Enter 1 or 2: ")
+#The if statements below check the user's choice and performs the action
     if choice == "1":
         if len(stack) > 0:
-            top_ring = stack.pop()
-            hand.append(top_ring)
-            print("You removed a ring")
+            color_choice = input("Which color to remove? (Red, Orange, Yellow, Green, Blue): ")
+
+            if color_choice in stack:
+                stack.remove(color_choice)
+                hand.append(color_choice)
+                print("You removed the " + color_choice + " ring")
+            else:
+                print("That ring is not in the stack")
         else:
-            print("No rings left to remove!")
-           
-    if choice == "2":
+            print("No more rings in the stack")
+
+
+ #this elif statement checks if the user wants to add a ring back to the stack, and if they have any rings in their hand to add back
+    elif choice == "2":
         if len(hand) > 0:
-            top_ring = hand.pop()
-            stack.append(top_ring)
-            print("You added a ring back")
+            print("Rings in hand:")
+            print(hand)
+           
+            color_choice = input("Which Ring do you want to add back?: ")
+           
+            if color_choice in hand:
+                hand.remove(color_choice)
+                stack.append(color_choice)
+                print("You added the " + color_choice + " ring back")
+            else:
+                print("You don't have that ring in your hand")
         else:
-            print("No rings in your hand!")
+            print("No rings in hand")
 
 
-#This section of code displays the current state of the stack and the player's hand after each action
+#This section prints the current stack and the number of rings in hand
+    print("")
     print("Current Stack:")
     if len(stack) == 0:
         print("Empty Stack")
+    else:
+        for ring in stack:
+            if ring == "Red":
+                print(Red + "█████████" + Reset)
+            elif ring == "Orange":
+                print(Orange + "█████████" + Reset)
+            elif ring == "Yellow":
+                print(Yellow + "█████████" + Reset)
+            elif ring == "Green":
+                print(Green + "█████████" + Reset)
+            elif ring == "Blue":
+                print(Blue + "█████████" + Reset)
 
-    for ring in reversed(stack):
-        print(ring + "█████████" + Reset)
 
-    print("Rings in hand right now:")
-
-    print(len(hand))
+    print("Total rings in hand: " + str(len(hand)))
