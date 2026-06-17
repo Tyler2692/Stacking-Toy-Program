@@ -60,7 +60,7 @@ while True:
     if len(stack) == 0:
         print("Empty Stack")
     else:
-        for ring in stack:
+        for ring in reversed(stack):
             if ring == "Red":
                 print(Red + "█████████" + Reset)
             elif ring == "Orange":
