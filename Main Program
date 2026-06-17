@@ -34,7 +34,7 @@ while True:
             hand.append(top_ring)
             print("You removed a ring")
         else:
-            print("No rings left to remove!")
+            print("No rings left")
 
  #this elif statement checks if the user wants to add a ring back to the stack, and if they have any rings in their hand to add back
     elif choice == "2":
@@ -47,7 +47,7 @@ while True:
             if color_choice in hand:
                 hand.remove(color_choice)
                 stack.append(color_choice)
-                print("You added the " + color_choice + " ring back!")
+                print("You added the " + color_choice + " ring back")
             else:
                 print("You don't have that ring in your hand")
         else:
